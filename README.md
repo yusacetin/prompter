@@ -5,9 +5,38 @@ Create shell prompts in a user friendly LaTeX inspired syntax.
 Simply run `go build prompter.go`.
 
 ### Usage
-Running `./prompter [string]` where `[string]` is your input returns the text that needs to be set as the `PS1` environment variable. You can use `echo "export PS1='$([string])'" >> ~/.bashrc` to add it to your bashrc automatically. It reads from stdin when no command line arguments are provided, so you can also do something like `echo "[string]" | ./prompter`.
+Running `./prompter "[string]"` where `[string]` is your input returns the text that needs to be set as the `PS1` environment variable. You can use `echo export PS1="$(./prompter "[string]")" >> ~/.bashrc` to add it to your bashrc automatically. It reads from stdin when no command line arguments are provided, so you can also do something like `echo "[string]" | ./prompter`.
 
-For the input; use prompt commands (`\u`, `\h`, `\$`, etc) normally, use `\S` or `\space` for space (all blank spaces in the provided input will be ignored), use one of the commands in the maps defined in prompter.go to begin a format, and use `\clear` to clear formatting.
+For the input; use prompt commands (`\u`, `\h`, `\$`, etc) normally, use `\S` or `\space` for space (all blank spaces in the provided input will be ignored), and use commands given in the table below for text formatting.
+
+### List of commands
+| Command     | Function                                   |
+| ----------- | ------------------------------------------ |
+| \blackbg    | Begin black background color               |
+| \redbg      | Begin red background color                 |
+| \greenbg    | Begin green background color               |
+| \brownbg    | Begin brown background color               |
+| \bluebg     | Begin blue background color                |
+| \purplebg   | Begin purple background color              |
+| \cyanbg     | Begin cyan background color                |
+| \whitebg    | Begin white background color               |
+| \black      | Begin black text color                     |
+| \red        | Begin red text color                       |
+| \green      | Begin green text color                     |
+| \brown      | Begin brown text color                     |
+| \blue       | Begin blue text color                      |
+| \purple     | Begin purple text color                    |
+| \cyan       | Begin cyan text color                      |
+| \white      | Begin white text color                     |
+| \bold       | Begin bold text                            |
+| \dim        | Begin dimmed text color                    |
+| \italic     | Begin italic text                          |
+| \underline  | Begin underlined text                      |
+| \blink      | Begin blinking text                        |
+| \reverse    | Begin inverting text and background colors |
+| \overline   | Begin overlined text                       |
+| \clear      | Clear all formatting                       |
+
 
 ### Examples
 #### Example commands
