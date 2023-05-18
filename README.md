@@ -36,6 +36,7 @@ For the input; use prompt commands (`\u`, `\h`, `\$`, etc) normally, use `\S` or
 | \reverse    | Begin inverting text and background colors |
 | \overline   | Begin overlined text                       |
 | \clear      | Clear all formatting                       |
+| \S, \space  | Insert space                               |
 
 
 ### Examples
