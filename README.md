@@ -42,11 +42,11 @@ For the input; use prompt commands (`\u`, `\h`, `\$`, etc) normally, use `\S` or
 ### Examples
 #### Example commands
 * `\bold \red [ \blue \u \green @ \purple \h \S \cyan \W \red ] \white \$ \clear \S`  
-  ![Screenshot 1](yusacetin.github.io/project-screenshots/prompter/1.png)  
+  ![Screenshot 1](https://yusacetin.github.io/project-screenshots/prompter/1.png)  
 * `\bold \purple [ \clear \italic \t \clear \bold \purple ] \blue \$ \clear \S`  
-  ![Screenshot 2](yusacetin.github.io/project-screenshots/prompter/2.png)  
+  ![Screenshot 2](https://yusacetin.github.io/project-screenshots/prompter/2.png)  
 * `\greenbg \bold \white \u \space \$ \clear \space`  
-  ![Screenshot 3](yusacetin.github.io/project-screenshots/prompter/3.png)
+  ![Screenshot 3](https://yusacetin.github.io/project-screenshots/prompter/3.png)
 #### Export to current session
 * `export PS1="$(./prompter '\bold \red [ \blue \u \green @ \purple \h \S \cyan \W \red ] \white \$ \clear \S')"`
 * `export PS1="$(./prompter '\bold \purple [ \clear \italic \t \clear \bold \purple ] \blue \$ \clear \S')"`
