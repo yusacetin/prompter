@@ -1,8 +1,8 @@
 ## Prompter
 Create shell prompts in a user friendly LaTeX inspired syntax.
 
-### Build
-Simply run `go build prompter.go`.
+### Building
+Simply run `go build prompter.go` to generate the executable named `prompter`.
 
 ### Usage
 Running `./prompter "[string]"` where `[string]` is your input returns the text that needs to be set as the `PS1` environment variable. You can use `echo export PS1="$(./prompter "[string]")" >> ~/.bashrc` to add it to your bashrc automatically. It reads from stdin when no command line arguments are provided, so you can also do something like `echo "[string]" | ./prompter`.
