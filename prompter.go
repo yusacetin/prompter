@@ -1,10 +1,10 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strings"
-	"bufio"
 )
 
 var commands = map[string]string{
@@ -124,13 +124,13 @@ func is_empty(my_stack Stack) bool {
 
 func get_input_code() string {
 	code := ""
-	if (len(os.Args) > 1) {
+	if len(os.Args) > 1 {
 		// Read input string as the first command line argument
 		code = strings.Join(os.Args[1:], " ")
 	} else {
 		// No command line arguments, read input from stdin
 		scanner := bufio.NewScanner(os.Stdin)
-		for scanner.Scan(){
+		for scanner.Scan() {
 			code = scanner.Text()
 		}
 	}
@@ -139,9 +139,9 @@ func get_input_code() string {
 
 func main() {
 	var stack Stack
-	
+
 	code := get_input_code()
-	
+
 	cmd_keys := get_keys(commands)
 	special_attrs_keys := get_keys(special_attrs)
 	cmd_buffer := "\\" // must always be reset to "\\" and not an empty string
@@ -149,7 +149,7 @@ func main() {
 
 	for i := 0; i < len(code)+1; i++ {
 		cur_char := " "
-		if (i < len(code)) {
+		if i < len(code) {
 			cur_char = string(code[i]) // this block to avoid leaving out the last attribute in the input
 		}
 
@@ -179,6 +179,7 @@ func main() {
 			if cur_char != " " && cur_char != "\\" {
 				cmd_buffer += cur_char
 				state = READ_CMD
+				break
 			}
 
 			if cur_char == "\\" {
@@ -214,6 +215,27 @@ func main() {
 						fmt.Println("Invalid syntax")
 						os.Exit(1)
 					}
+				} else if cur_char == "\\" {
+					// This path is taken when an attribute is immediately followed by another attribute or command
+					if contains(default_attrs, cmd_buffer) {
+						// This path is taken when the buffered item is not a command but a default attribute
+						output += cmd_buffer
+						cmd_buffer = "\\"
+						state = WAIT_CMD_CHAR
+						break
+
+					} else if contains(special_attrs_keys, cmd_buffer) {
+						// This path is taken when the buffered item is a special command (e.g. a space)
+						output += special_attrs[cmd_buffer]
+						cmd_buffer = "\\"
+						state = WAIT_CMD_CHAR
+						break
+
+					} else {
+						fmt.Printf("Invalid attribute: %s\n", cmd_buffer)
+						os.Exit(1)
+					}
+					cmd_buffer = "\\"
 
 				} else if contains(cmd_keys, cmd_buffer) {
 					// This path is taken when a valid command is detected
@@ -221,7 +243,7 @@ func main() {
 					stack = push(stack, cmd_buffer)
 					cmd_buffer = "\\"
 
-					if (cur_char == "{") {
+					if cur_char == "{" {
 						state = SCAN
 					} else {
 						state = WAIT_OPENING_BRACE
@@ -241,9 +263,9 @@ func main() {
 					cmd_buffer = "\\"
 					state = SCAN
 					break
-					
+
 				} else {
-					fmt.Printf("Invalid command: %s\n", cmd_buffer)
+					fmt.Printf("Invalid command or attribute: %s\n", cmd_buffer)
 					os.Exit(1)
 				}
 			}
@@ -251,9 +273,9 @@ func main() {
 
 		// If the opening brace is not immediately after the command
 		case WAIT_OPENING_BRACE:
-			if (cur_char == "{") {
+			if cur_char == "{" {
 				state = SCAN
-			} else if (cur_char != " ") {
+			} else if cur_char != " " {
 				fmt.Println("Invalid syntax")
 				os.Exit(1)
 			}
