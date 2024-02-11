@@ -7,7 +7,7 @@ Simply run `go build prompter.go` to generate the executable named `prompter`.
 ### Usage
 The recommended way to use the program is with the following syntax:
 
-    echo "[input string] | ./prompter"
+    echo "[input string]" | ./prompter
 
 The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \D{}.
 
