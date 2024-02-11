@@ -21,36 +21,36 @@ You can also pass the input string as a command line argument, however you MUST 
 
 The output is the string that needs to be set as the PS1 variable. In these examples it is
 
-`\[\e[1m\]\[\e[31m\][\[\e[0m\]\[\e[1m\]\[\e[34m\]\u\[\e[0m\]\[\e[1m\]\[\e[31m\]@\[\e[0m\]\[\e[1m\]\[\e[35m\]\h\[\e[0m\]\[\e[1m\] \[\e[36m\]\W\[\e[0m\]\[\e[1m\]\[\e[31m\]]\[\e[0m\]\[\e[1m\]\[\e[32m\]$\[\e[0m\]\[\e[1m\] \[\e[0m\]`
+    \[\e[1m\]\[\e[31m\][\[\e[0m\]\[\e[1m\]\[\e[34m\]\u\[\e[0m\]\[\e[1m\]\[\e[31m\]@\[\e[0m\]\[\e[1m\]\[\e[35m\]\h\[\e[0m\]\[\e[1m\] \[\e[36m\]\W\[\e[0m\]\[\e[1m\]\[\e[31m\]]\[\e[0m\]\[\e[1m\]\[\e[32m\]$\[\e[0m\]\[\e[1m\] \[\e[0m\]
 
 You can run `export PS1="[output string]"` to use it in your current session or append it to your shell rc file to make it your default prompt. You can use command substitution like `export PS1="$(echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\$} \space }" | ./prompter)"` to reduce the number of steps. I'm aware of how inconvenient this is and will work on a way to automate it ~when~ if I feel like it.
 
 ### List of cCmmands and Custom Attributes
-| Command       | Function                                   |
-| ------------- | ------------------------------------------ |
-| \blackbg{}    | Begin black background color               |
-| \redbg{}      | Begin red background color                 |
-| \greenbg{}    | Begin green background color               |
-| \brownbg{}    | Begin brown background color               |
-| \bluebg{}     | Begin blue background color                |
-| \purplebg{}   | Begin purple background color              |
-| \cyanbg{}     | Begin cyan background color                |
-| \whitebg{}    | Begin white background color               |
-| \black{}      | Begin black text color                     |
-| \red{}        | Begin red text color                       |
-| \green{}      | Begin green text color                     |
-| \brown{}      | Begin brown text color                     |
-| \blue{}       | Begin blue text color                      |
-| \purple{}     | Begin purple text color                    |
-| \cyan{}       | Begin cyan text color                      |
-| \white{}      | Begin white text color                     |
-| \bold{}       | Begin bold text                            |
-| \dim{}        | Begin dimmed text color                    |
-| \italic{}     | Begin italic text                          |
-| \underline{}  | Begin underlined text                      |
-| \blink{}      | Begin blinking text                        |
-| \reverse{}    | Begin inverting text and background colors |
-| \overline{}   | Begin overlined text                       |
+| Command       | Function                             |
+| ------------- | -------------------------------------|
+| \blackbg{}    | Black background color               |
+| \redbg{}      | Red background color                 |
+| \greenbg{}    | Green background color               |
+| \brownbg{}    | Brown background color               |
+| \bluebg{}     | Blue background color                |
+| \purplebg{}   | Purple background color              |
+| \cyanbg{}     | Cyan background color                |
+| \whitebg{}    | White background color               |
+| \black{}      | Black text color                     |
+| \red{}        | Red text color                       |
+| \green{}      | Green text color                     |
+| \brown{}      | Brown text color                     |
+| \blue{}       | Blue text color                      |
+| \purple{}     | Purple text color                    |
+| \cyan{}       | Cyan text color                      |
+| \white{}      | White text color                     |
+| \bold{}       | Bold text                            |
+| \dim{}        | Dimmed text color                    |
+| \italic{}     | Italic text                          |
+| \underline{}  | Underlined text                      |
+| \blink{}      | Blinking text                        |
+| \reverse{}    | Inverting text and background colors |
+| \overline{}   | Overlined text                       |
 | \S, \space    | Insert space                               |
 
 ### More Example Strings
