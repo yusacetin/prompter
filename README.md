@@ -25,7 +25,7 @@ The output is the string that needs to be set as the PS1 variable. In these exam
 
 You can run `export PS1="[output string]"` to use it in your current session or append it to your shell rc file to make it your default prompt. You can use command substitution like `export PS1="$(echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\$} \space }" | ./prompter)"` to reduce the number of steps. I'm aware of how inconvenient this is and will work on a way to automate it ~when~ if I feel like it.
 
-### List of cCmmands and Custom Attributes
+### List of Commands and Custom Attributes
 | Command       | Function                             |
 | ------------- | -------------------------------------|
 | \blackbg{}    | Black background color               |
