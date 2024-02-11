@@ -147,8 +147,11 @@ func main() {
 	cmd_buffer := "\\" // must always be reset to "\\" and not an empty string
 	output := ""
 
-	for i := 0; i < len(code); i++ {
-		cur_char := string(code[i])
+	for i := 0; i < len(code)+1; i++ {
+		cur_char := " "
+		if (i < len(code)) {
+			cur_char = string(code[i]) // this block to avoid leaving out the last attribute in the input
+		}
 
 		//fmt.Printf("Index: %d, State: %d, Char: %s, Cmd_Buffer: %s\n", i, state, cur_char, cmd_buffer)
 		//fmt.Println(stack)
@@ -189,7 +192,7 @@ func main() {
 			if contains(termination_chars, cur_char) {
 				// This state is over, decide which path to take
 				if cur_char == "}" {
-					// This path is taken when a default attribute is being read
+					// This path is taken when an attribute is being read
 					// and immediately afterwards a command needs to be cancelled
 					if contains(default_attrs, cmd_buffer) {
 						output += cmd_buffer
