@@ -9,21 +9,25 @@ The recommended way to use the program is with the following syntax:
 
     echo "[input string]" | ./prompter
 
-The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \D{}.
+The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \D{}. If you want to use the characters { or } in your prompt you should escape them with \ in your input. If passing input string as an argument you should escape with \\. To include \ in your prompt you should always escape with \\.
 
 Example:
 
-    echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\$} \space }" | ./prompter
+    echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space}" | ./prompter
 
-You can also pass the input string as a command line argument, however you MUST use double slashes. Example:
+See known issues below for \\$. You can also pass the input string as a command line argument, however you must use double slashes. Example:
 
-    ./prompter \\bold{ \\red{[} \\blue{\\u} \\red{@} \\purple{\\h} \\S \\cyan{\\W} \\red{]}\\green{\$} \\space }
+    ./prompter \\bold{ \\red{[} \\blue{\\u} \\red{@} \\purple{\\h} \\S \\cyan{\\W} \\red{]}\\green{\\$} \\space}
 
 The output is the string that needs to be set as the PS1 variable. In these examples it is
 
-    \[\e[1m\]\[\e[31m\][\[\e[0m\]\[\e[1m\]\[\e[34m\]\u\[\e[0m\]\[\e[1m\]\[\e[31m\]@\[\e[0m\]\[\e[1m\]\[\e[35m\]\h\[\e[0m\]\[\e[1m\] \[\e[36m\]\W\[\e[0m\]\[\e[1m\]\[\e[31m\]]\[\e[0m\]\[\e[1m\]\[\e[32m\]$\[\e[0m\]\[\e[1m\] \[\e[0m\]
+    \[\e[1m\]\[\e[31m\][\[\e[0m\]\[\e[1m\]\[\e[34m\]\u\[\e[0m\]\[\e[1m\]\[\e[31m\]@\[\e[0m\]\[\e[1m\]\[\e[35m\]\h\[\e[0m\]\[\e[1m\] \[\e[36m\]\W\[\e[0m\]\[\e[1m\]\[\e[31m\]]\[\e[0m\]\[\e[1m\]\[\e[32m\]$\[\e[0m\]\[\e[1m\] \[\e[0m\] 
 
-You can run `export PS1="[output string]"` to use it in your current session or append it to your shell rc file to make it your default prompt. You can use command substitution like `export PS1="$(echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\$} \space }" | ./prompter)"` to reduce the number of steps. I'm aware of how inconvenient this is and will work on a way to automate it ~when~ if I feel like it.
+You can run `export PS1="[output string]"` to use it in your current session or append it to your shell rc file to make it your default prompt. You can use command substitution like
+
+    export PS1="$(echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space}" | ./prompter)"
+
+to reduce the number of steps. I'm aware of how inconvenient this is and will work on a way to automate it ~when~ if I feel like it.
 
 ### List of Commands and Custom Attributes
 | Command       | Function                             |
@@ -54,13 +58,16 @@ You can run `export PS1="[output string]"` to use it in your current session or 
 | \S, \space    | Insert space                               |
 
 ### More Example Strings
-#### Example commands
-* `\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\$} \space }`  
+* `\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space }`  
 ![Screenshot 1](https://yusacetin.github.io/project-screenshots/prompter/1.png)  
-* `\bold{\purple{[}} \italic{\t} \bold{\purple{]} \blue{\$}}`  
+* `\bold{\purple{[}} \italic{\t} \bold{\purple{]} \blue{\\$}}`  
 ![Screenshot 2](https://yusacetin.github.io/project-screenshots/prompter/2.png)  
-* `\greenbg{\white{\bold{\u \space \$ \space}}}`  
+* `\greenbg{\white{\bold{\u \space \\$ \space}}}`  
 ![Screenshot 3](https://yusacetin.github.io/project-screenshots/prompter/3.png)
+
+### Known Issues
+* Using \$ might cause problems, always use \\$ even when using the echo method.
+* More thorough testing is needed. Feedback welcome.
 
 ### The Old Version
 See *.old files for the old version.

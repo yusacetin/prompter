@@ -134,24 +134,19 @@ func get_input_code() string {
 			code = scanner.Text()
 		}
 	}
-	return code
+	return code + " " // extra space to avoid leaving out the last word if it's an attribute
 }
 
 func main() {
 	var stack Stack
-
 	code := get_input_code()
-
 	cmd_keys := get_keys(commands)
 	special_attrs_keys := get_keys(special_attrs)
 	cmd_buffer := "\\" // must always be reset to "\\" and not an empty string
 	output := ""
 
-	for i := 0; i < len(code)+1; i++ {
-		cur_char := " "
-		if i < len(code) {
-			cur_char = string(code[i]) // this block to avoid leaving out the last attribute in the input
-		}
+	for _, cur_rune := range code {
+		cur_char := string(cur_rune)
 
 		//fmt.Printf("Index: %d, State: %d, Char: %s, Cmd_Buffer: %s\n", i, state, cur_char, cmd_buffer)
 		//fmt.Println(stack)
@@ -176,7 +171,7 @@ func main() {
 			}
 
 		case WAIT_CMD_CHAR: // just scan until a letter
-			if cur_char != " " && cur_char != "\\" {
+			if cur_char != " " && cur_char != "\\" && cur_char != "{" && cur_char != "}" {
 				cmd_buffer += cur_char
 				state = READ_CMD
 				break
@@ -187,6 +182,14 @@ func main() {
 				output += "\\\\"
 				cmd_buffer = "\\"
 				state = SCAN
+				break
+
+			} else if cur_char == "{" || cur_char == "}" {
+				// This path is taken when the user wants to add { or } into the variable
+				output += cur_char
+				cmd_buffer = "\\"
+				state = SCAN
+				break
 			}
 
 		case READ_CMD: // as long as a termination char is not reached, save cmd
@@ -215,6 +218,7 @@ func main() {
 						fmt.Println("Invalid syntax")
 						os.Exit(1)
 					}
+
 				} else if cur_char == "\\" {
 					// This path is taken when an attribute is immediately followed by another attribute or command
 					if contains(default_attrs, cmd_buffer) {
@@ -235,6 +239,7 @@ func main() {
 						fmt.Printf("Invalid attribute: %s\n", cmd_buffer)
 						os.Exit(1)
 					}
+
 					cmd_buffer = "\\"
 
 				} else if contains(cmd_keys, cmd_buffer) {
@@ -269,6 +274,7 @@ func main() {
 					os.Exit(1)
 				}
 			}
+
 			cmd_buffer += cur_char // if the current char is not a termination command
 
 		// If the opening brace is not immediately after the command
@@ -289,5 +295,6 @@ func main() {
 	if is_empty(stack) == false {
 		fmt.Println("WARNING: Unterminated attribute")
 	}
+
 	fmt.Println(output)
 }
