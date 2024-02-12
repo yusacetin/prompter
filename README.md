@@ -9,7 +9,7 @@ The recommended way to use the program is with the following syntax:
 
     echo "[input string]" | ./prompter
 
-The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \\D{}. If you want to use the characters { or } in your prompt you should escape them with \ in your input. If passing input string as an argument you should escape with \\\\. To include \ in your prompt you should always escape with \\\\.
+The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \\D{}.
 
 Example:
 
@@ -28,6 +28,8 @@ You can run `export PS1="[output string]"` to use it in your current session or 
     export PS1="$(echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space}" | ./prompter)"
 
 to reduce the number of steps. I'm aware of how inconvenient this is and will work on a way to automate it ~when~ if I feel like it.
+
+If you want to use the characters { or } in your prompt you should escape them with \\ in your input. If passing input string as an argument you should escape with \\\\. To include \\ in your prompt you should always escape with \\\\.
 
 ### List of Commands and Custom Attributes
 | Command       | Function                             |
