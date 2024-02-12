@@ -9,13 +9,13 @@ The recommended way to use the program is with the following syntax:
 
     echo "[input string]" | ./prompter
 
-The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \D{}. If you want to use the characters { or } in your prompt you should escape them with \ in your input. If passing input string as an argument you should escape with \\. To include \ in your prompt you should always escape with \\.
+The input string should contain commands and attributes. Commands set the appearance modifiers and attributes are the special strings that PS1 parses (I'm using the term "attribute" very loosely here). The program supports all the attributes listed [here](https://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html) except for \\D{}. If you want to use the characters { or } in your prompt you should escape them with \ in your input. If passing input string as an argument you should escape with \\\\. To include \ in your prompt you should always escape with \\\\.
 
 Example:
 
     echo "\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space}" | ./prompter
 
-See known issues below for \\$. You can also pass the input string as a command line argument, however you must use double slashes. Example:
+See known issues below for \\\\$. You can also pass the input string as a command line argument, however you must use double slashes. Example:
 
     ./prompter \\bold{ \\red{[} \\blue{\\u} \\red{@} \\purple{\\h} \\S \\cyan{\\W} \\red{]}\\green{\\$} \\space}
 
@@ -66,7 +66,7 @@ to reduce the number of steps. I'm aware of how inconvenient this is and will wo
 ![Screenshot 3](https://yusacetin.github.io/project-screenshots/prompter/3.png)
 
 ### Known Issues
-* Using \$ might cause problems, always use \\$ even when using the echo method.
+* Using \\$ might cause problems, always use \\\\$ even when using the echo method.
 * More thorough testing is needed. Feedback welcome.
 
 ### The Old Version
