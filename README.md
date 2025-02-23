@@ -61,11 +61,11 @@ If you want to use the characters { or } in your prompt you should escape them w
 
 ### More Example Strings
 * `\bold{ \red{[} \blue{\u} \red{@} \purple{\h} \S \cyan{\W} \red{]}\green{\\$} \space }`  
-![Screenshot 1](https://yusacetin.github.io/project-screenshots/prompter/1.png)  
+![Screenshot 1](screenshots/prompter1.png)  
 * `\bold{\purple{[}} \italic{\t} \bold{\purple{]} \blue{\\$}}`  
-![Screenshot 2](https://yusacetin.github.io/project-screenshots/prompter/2.png)  
+![Screenshot 2](screenshots/prompter2.png)  
 * `\greenbg{\white{\bold{\u \space \\$ \space}}}`  
-![Screenshot 3](https://yusacetin.github.io/project-screenshots/prompter/3.png)
+![Screenshot 3](screenshots/prompter3.png)
 
 ### Known Issues
 * Using \\$ might cause problems, always use \\\\$ even when using the echo method.
